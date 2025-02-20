@@ -1,0 +1,35 @@
+try {
+
+
+
+$PasswordUser = Read-Host -AsSecureString 'Accountpassword'
+
+if ($PasswordUser -eq 'yes' -or $PasswordUser -eq 'no'){
+Write-Output "Thanks!"
+}else{
+Write-Output "Please only type 'yes' or 'no'."
+}
+
+$NameAD
+$EmailAddressAD
+$UPNAD
+$SAMAD
+$DescriptionAD
+
+New-ADUser -Name $NameAD 
+    -Description $DescriptionAD
+    -EmailAddress $EmailAddressAD
+    -Path $PathOU 
+    -SamAccountName $SAMAD 
+    -UserPrincipalName $UPNAD
+    -Enabled $True 
+    -AccountPassword $PasswordUser
+
+
+}
+
+catch {
+
+    Write-Host $_.Exception.Mesage
+    
+    }
